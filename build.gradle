@@ -1,0 +1,23 @@
+group 'pl.edu.agh.marcskow'
+version '1.0'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.1.0.Final'
+    compile 'org.hibernate:hibernate-core:5.1.0.Final'
+    compile 'org.hibernate:hibernate-entitymanager:5.1.0.Final'
+    compile 'org.hibernate:hibernate-annotations:3.5.6-Final'
+    compile 'org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final'
+    compile 'mysql:mysql-connector-java:5.1.38'
+    compile 'org.projectlombok:lombok:1.16.6'
+    compile 'ch.qos.logback:logback-classic:1.1.6'
+    compile 'org.slf4j:slf4j-api:1.7.18'
+}
