@@ -14,4 +14,7 @@ public interface Session {
     void closeConnection() throws IOException;
 
     void writeToStandardOutput(String message);
+
+    void setPassivePort(int port);
+    void setPassiveIp(String ip);
 }

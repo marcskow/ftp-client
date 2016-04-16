@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" style="-fx-background-color: gray;" stylesheets="@DarkStyleMain.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.marcskow.ftpclient.controller.ClientController">
+    <children>
+        <TextArea fx:id="responseTextArea" layoutX="600.0" layoutY="40.0" prefHeight="169.0" prefWidth="589.0" />
+        <TextField fx:id="ipTextField" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="46.0" promptText="127.0.0.1" />
+        <Label layoutX="14.0" layoutY="14.0" prefHeight="31.0" prefWidth="187.0" text="Post" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Label>
+        <TextField fx:id="portTextField" alignment="CENTER_RIGHT" layoutX="216.0" layoutY="46.0" promptText="1234" />
+        <Label layoutX="216.0" layoutY="14.0" prefHeight="31.0" prefWidth="187.0" text="Port" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Label>
+        <Button fx:id="connectionButton" layoutX="416.0" layoutY="46.0" mnemonicParsing="false" onAction="#connect" prefHeight="33.0" prefWidth="171.0" text="Connect" />
+        <TextField fx:id="usernameTextField" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="109.0" />
+        <Label layoutX="14.0" layoutY="79.0" prefHeight="31.0" prefWidth="187.0" text="Username" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Label>
+        <Label layoutX="216.0" layoutY="79.0" prefHeight="31.0" prefWidth="187.0" text="Password" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Label>
+        <PasswordField fx:id="passwordTextField" layoutX="216.0" layoutY="109.0" />
+        <Button fx:id="loginButton" layoutX="416.0" layoutY="108.0" mnemonicParsing="false" onAction="#login" prefHeight="33.0" prefWidth="171.0" text="Login" />
+        <TextField fx:id="requestTextField" alignment="CENTER_RIGHT" layoutX="216.0" layoutY="171.0" />
+        <Button fx:id="requestButton" layoutX="416.0" layoutY="170.0" mnemonicParsing="false" onAction="#sendRequest" prefHeight="33.0" prefWidth="171.0" text="Send" />
+        <Label layoutX="216.0" layoutY="141.0" prefHeight="31.0" prefWidth="187.0" text="Request" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Label>
+        <SplitPane fx:id="split" dividerPositions="0.5" layoutX="6.0" layoutY="221.0" prefHeight="673.0" prefWidth="1188.0">
+            <items>
+                <AnchorPane fx:id="splitFirst" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+            </items>
+        </SplitPane>
+    </children>
+</AnchorPane>
