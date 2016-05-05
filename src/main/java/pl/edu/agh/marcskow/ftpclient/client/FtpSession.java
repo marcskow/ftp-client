@@ -1,12 +1,15 @@
 package pl.edu.agh.marcskow.ftpclient.client;
 
-import com.sun.xml.internal.ws.message.stream.StreamAttachment;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TreeView;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.SourceType;
+import pl.edu.agh.marcskow.ftpclient.layout.SimpleFileTreeItem;
+import pl.edu.agh.marcskow.ftpclient.layout.SimpleStringTreeItem;
 import pl.edu.agh.marcskow.ftpclient.protocol.LIST;
 import pl.edu.agh.marcskow.ftpclient.protocol.PASV;
 import pl.edu.agh.marcskow.ftpclient.protocol.RETR;
@@ -14,10 +17,7 @@ import pl.edu.agh.marcskow.ftpclient.protocol.STOR;
 import pl.edu.agh.marcskow.ftpclient.response.Parser;
 import pl.edu.agh.marcskow.ftpclient.response.Response;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 
 @Getter
@@ -80,13 +80,38 @@ public class FtpSession implements Session {
             }
         } else if(code == 150 && lastRequest.split(" ")[0].equals("RETR")){
             if(lastRequest.split(" ").length > 0) {
-                new RETR(this, response, lastRequest.split(" ")[1]).execute();
+                new RETR(this, response, "/home/intenso/ftpClient/" + lastRequest.split(" ")[1]).execute();
             }
         } else if(code == 150 && lastRequest.split(" ")[0].equals("LIST")){
             if(lastRequest.split(" ").length > 0) {
                 String[] list = new LIST(this, response).execute();
+                updateListView(list);
             }
         }
+    }
+
+    public void updateListView(String[] files){
+        final TreeView<File> fileView = new TreeView<>(
+                new SimpleFileTreeItem(new File("/home/intenso/ftpClient")));
+
+        Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                Platform.runLater(() -> {
+                    splitPane.getItems().removeAll();
+                    splitPane.getItems().clear();
+
+                    TreeView<String> treeView = new TreeView<>(new SimpleStringTreeItem("/ DIR",files));
+                    splitPane.getItems().add(treeView);
+
+                    splitPane.getItems().add(fileView);
+                });
+                return null;
+            }
+        };
+        Thread t = new Thread(task);
+        t.setDaemon(true);
+        t.start();
     }
 
     @Override

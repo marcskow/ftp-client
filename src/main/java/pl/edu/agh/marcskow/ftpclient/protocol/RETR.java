@@ -4,7 +4,10 @@ import lombok.extern.slf4j.Slf4j;
 import pl.edu.agh.marcskow.ftpclient.client.FtpSession;
 import pl.edu.agh.marcskow.ftpclient.response.Response;
 
-import java.io.*;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.Socket;
 
 
@@ -39,5 +42,6 @@ public class RETR extends PassiveCommand {
                 log.error("RETR failed ", e);
             }
         });
+        t.start();
     }
 }

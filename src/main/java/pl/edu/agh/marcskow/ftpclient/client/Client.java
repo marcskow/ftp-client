@@ -4,7 +4,6 @@ package pl.edu.agh.marcskow.ftpclient.client;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
-import java.net.Socket;
 import java.util.Scanner;
 
 @Slf4j
@@ -22,7 +21,7 @@ public class Client {
             log.error("Connection error", e);
         }
 
-        Thread t = new Thread(() -> {
+        /*Thread t = new Thread(() -> {
 
             while (session.isUp()){
                 try {
@@ -33,7 +32,7 @@ public class Client {
                 }
             }
         });
-        t.start();
+        t.start();*/
 
         Scanner in = new Scanner(System.in);
 

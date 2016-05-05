@@ -12,9 +12,9 @@ public class SimpleStringTreeItem extends TreeItem<String> {
     public boolean isFile;
 
     public SimpleStringTreeItem(String f, String[] files) {
-        super(f.substring(0,f.length() - 2));
-        name = f.substring(0,f.length() - 2);
-        isFile = f.substring(f.length() - 1).equals("f");
+        super(f.substring(0,f.length() - 5));
+        name = f.substring(0,f.length() - 5);
+        isFile = f.substring(f.length() - 4).equals("FILE");
         this.children = files;
     }
 
